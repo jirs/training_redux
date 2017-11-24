@@ -5,7 +5,7 @@ import {createStore} from './reduxStore';
 
 const initialState = { count : 0 };
 
-function reducer(state, action) {
+function reducer(state = { count: 0 }, action) {
     switch (action.type) {
         case 'INCREMENT' : return { count: state.count + action.count };
         case 'DECREMENT' : return { count: state.count - action.count };
@@ -26,7 +26,8 @@ const resetAction = () => {
 
 
 
-const store = createStore(reducer, initialState);
+// const store = createStore(reducer, initialState);
+const store = createStore(reducer);
 
 class Counter extends React.Component {
     constructor(props) {
