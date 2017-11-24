@@ -13,9 +13,18 @@ function updateState(state, action) {
     }
 }
 
-const incrementAction = {type: 'INCREMENT', count: 1};
-const decrementAction = {type: 'DECREMENT', count: 1};
-const resetAction = {type: 'RESET'};
+const incrementAction = (amount) => {
+    return {type: 'INCREMENT', count: amount};
+};
+const decrementAction = (amount) => {
+    return {type: 'DECREMENT', count: amount};
+};
+const resetAction = () => {
+    return {type: 'RESET'};
+};
+
+
+
 
 const store = new Store(updateState, initialState);
 
@@ -32,15 +41,15 @@ class Counter extends React.Component {
     }
 
     increment() {
-        store.update(incrementAction);
+        store.update(incrementAction(parseInt(this.refs.amount.value || 1)));
     }
 
     decrement() {
-        store.update(decrementAction);
+        store.update(decrementAction(parseInt(this.refs.amount.value || 1)));
     }
 
     reset() {
-        store.update(resetAction);
+        store.update(resetAction());
     }
 
     render() {
